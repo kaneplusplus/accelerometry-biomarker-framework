@@ -1,0 +1,25 @@
+Bootstrap: docker
+From: ghcr.io/rocker-org/ml:4.2.1-cuda11.1
+
+%labels
+    Name "R-torch CUDA 11.3"
+    Architecture x86_64
+    URL https://research.computing.yale.edu/</hpc@yale.edu>
+
+%post
+    echo "Customizing rocker/ml"
+    Rscript -e "remotes::install_cran('arrow')"
+    Rscript -e "remotes::install_cran('torch')"
+    Rscript -e "torch::install_torch(type = '11.3')"
+    Rscript -e "remotes::install_cran('luz')"
+    Rscript -e "remotes::install_cran('torchvision')"
+    Rscript -e "remotes::install_cran('torchdatasets')"
+    Rscript -e "remotes::install_github('kaneplusplus/ukbactigraphy')"
+    Rscript -e "remotes::install_cran('roxygen2')"
+    Rscript -e "remotes::install_cran('foreach')"
+    Rscript -e "remotes::install_cran('future')"
+    Rscript -e "remotes::install_cran('doFuture')"
+    Rscript -e "remotes::install_cran('iterators')"
+    Rscript -e "remotes::install_cran('itertools')"
+    Rscript -e "remotes::install_cran('doRNG')"
+    
